@@ -92,6 +92,7 @@ public class ExampleLauncher extends ExpandableListActivity {
 	// METHODS FOR/FROM SUPERCLASS/INTERFACES
 	// ==========================================
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Dialog onCreateDialog(final int pId) {
 		switch(pId) {
@@ -121,6 +122,27 @@ public class ExampleLauncher extends ExpandableListActivity {
 				final int versionDescriptionsStartIndex = Math.max(0, Arrays.binarySearch(versionCodes, this.mVersionCodeLastLaunch)+ 1);
 				
 				final String[] versionDescriptions = this.getResources().getStringArray(R.array.new_in_version_changes);
+				
+				final StringBuilder sb = new StringBuilder();
+				for(int i = versionDescriptions.length - 1; i >= versionDescriptionsStartIndex; i--) {
+					sb.append("--------------------------\n");
+					sb.append(">>> Version: " + versionCodes[i] + "\n");
+					sb.append("--------------------------\n");
+					sb.append(versionDescriptions[i]);
+					
+					if(i > versionDescriptionsStartIndex) {
+						sb.append("\n\n");
+					}
+				}
+				
+				return new AlertDialog.Builder(this)
+					.setTitle(R.string.dialog_new_in_this_version_title)
+					.setMessage(sb.toString())
+					.setIcon(android.R.drawable.ic_dialog_info)
+					.setPositiveButton(android.R.string.ok, null)
+					.create();
+			default:
+				return super.onCreateDialog(pId);
 		}
 	}
 
