@@ -3,6 +3,7 @@ package com.comfycouch.examples.launcher;
 import java.util.Arrays;
 
 import org.andengine.AndEngine;
+import org.andengine.util.debug.Debug;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,12 +11,14 @@ import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.comfycouch.examples.R;
 
@@ -145,26 +148,50 @@ public class ExampleLauncher extends ExpandableListActivity {
 				return super.onCreateDialog(pId);
 		}
 	}
-
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.example_launcher, menu);
-		return true;
+	public void onGroupExpand(final int pGroupPosition) {
+		switch(this.mExpandableExampleLauncherListAdapter.getGroup(pGroupPosition)) {
+			case BENCHMARK:
+				Toast.makeText(this, "When running a benchmark, a dialog with the results will appear after some seconds.", Toast.LENGTH_LONG).show();
+		}
+		super.onGroupExpand(pGroupPosition);
 	}
-
+	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+	public boolean onChildClick(final ExpandableListView pParent, final View pV, final int pGroupPosition, final int pChildPosition, final long pId) {
+		final Example example = this.mExpandableExampleLauncherListAdapter.getChild(pGroupPosition, pChildPosition);
+		
+		this.startActivity(new Intent(this, Example.class));
+		
+		return super.onChildClick(pParent, pV, pGroupPosition, pChildPosition, pId);
+	}
+	
+	// ==========================================
+	// METHODS
+	// ==========================================
+	
+	public boolean isFirstTime(final String pKey) {
+		final SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+		if(prefs.getBoolean(pKey, true)) {
+			prefs.edit().putBoolean(pKey, false).commit();
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		return false;
 	}
-
+	
+	public int getVersionCode() {
+		try {
+			final PackageInfo pi = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+			return pi.versionCode;
+		} catch (final PackageManager.NameNotFoundException e) {
+			Debug.e("Package name not found", e);
+			return -1;
+		}
+	}
+	
+	// ==========================================
+	// INNER & ANONYMOUS CLASSES
+	// ==========================================
 
 }

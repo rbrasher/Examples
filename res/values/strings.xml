@@ -2,6 +2,7 @@
 <resources>
 	
     <string name="app_name">AndEngineExamples</string>
+    <string name="action_settings">Settings</string>
     <string name="btn_get_involved_caption">Open Source - Get involved#8230;</string>
     <string name="dialog_device_not_supported_title">Unsupported Device detected!</string>
     <string name="dialog_device_not_supported_message">Your device isn\'t supported by <b>AndEngine</b>!\n\nPlease send your device information to nicolasgramlich@gmail.com so that we can hopefully add support in the next release!</string>

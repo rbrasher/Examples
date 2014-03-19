@@ -36,6 +36,100 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.comfycouch.examples.util.BluetoothListDevicesActivity" android:configChanges="orientation" android:theme="@android:style/Theme.Dialog"/>
+        
+        <activity android:name="com.comfycouch.examples.AnalogOnScreenControlExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.AnalogOnScreenControlsExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.AnimatedSpritesExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.AugmentedRealityExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.AugmentedRealityHorizonExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.AutoParallaxBackgroundExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.BitmapFontExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.BoundCameraExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.CanvasTextureCompositingExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.CardinalSplineMoveModifierExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ChangeableTextExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.CollisionDetectionExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ColorKeyTextureSourceDecoratorExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.CoordinateConversionExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.CustomFontExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.DigitalOnScreenControlExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.EaseFunctionExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.EntityModifierExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.EntityModifierIrregularExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ETC1TextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.HullAlgorithmExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ImageFormatsExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.LevelLoaderExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.LineExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.LoadTextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MenuExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ModPlayerExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MotionStreakExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MovingBallExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MultiplayerExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MultiplayerServerDiscoveryExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MultiplayerBluetoothExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MultiTouchExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.MusicExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ParticleSystemCoolExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ParticleSystemNexusExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ParticleSystemSimpleExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PathModifierExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PauseExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsCollisionFilteringExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsFixedStepExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsJumpExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsRemoveExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsRevoluteJointExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PhysicsMouseJointExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PinchZoomExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PVRCCZTextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PVRGZTextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.PVRTextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.RadialBlurExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.RectangleExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.RepeatingSpriteBackgroundExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.Rotation3DExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.RunnablePoolUpdateHandlerExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ScreenCaptureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SoundExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SplitScreenExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SpriteBatchExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SpriteExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SpriteRemoveExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.StrokeFontExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SubMenuExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.SVGTextureRegionExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TextExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TextBreakExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TextMenuExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TextureOptionsExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TexturePackerExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TMXTiledMapExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TickerTextExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.TouchDragExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.UnloadResourcesExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.UpdateTextureExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.XMLLayoutExample" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.ZoomExample" android:configChanges="orientation"/>
+        
+        <activity android:name=".benchmark.AnimationBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.AttachDetachBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.ParticleSystemBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.PhysicsBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.EntityModifierBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.SpriteBenchmark" android:configChanges="orientation"/>
+		<activity android:name=".benchmark.TickerTextBenchmark" android:configChanges="orientation"/>
+		
+		<activity android:name=".game.pong.PongGameActivity" android:configChanges="orientation"/>
+		<activity android:name=".game.snake.SnakeGameActivity" android:configChanges="orientation"/>
+		<activity android:name=".game.racer.RacerGameActivity" android:configChanges="orientation"/>
+        
+        <activity android:name="com.comfycouch.examples.app.cityradar.CityRadarActivity" android:configChanges="orientation"/>
+        
     </application>
 
 </manifest>
