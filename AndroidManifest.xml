@@ -116,13 +116,13 @@
 		<activity android:name="com.comfycouch.examples.XMLLayoutExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.ZoomExample" android:configChanges="orientation"/>
         
-        <activity android:name=".benchmark.AnimationBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.AttachDetachBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.ParticleSystemBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.PhysicsBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.EntityModifierBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.SpriteBenchmark" android:configChanges="orientation"/>
-		<activity android:name=".benchmark.TickerTextBenchmark" android:configChanges="orientation"/>
+        <activity android:name="com.comfycouch.examples.benchmark.AnimationBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.AttachDetachBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.ParticleSystemBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.PhysicsBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.EntityModifierBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.SpriteBenchmark" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.benchmark.TickerTextBenchmark" android:configChanges="orientation"/>
 		
 		<activity android:name=".game.pong.PongGameActivity" android:configChanges="orientation"/>
 		<activity android:name=".game.snake.SnakeGameActivity" android:configChanges="orientation"/>
