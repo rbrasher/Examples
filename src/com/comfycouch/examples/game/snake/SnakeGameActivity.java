@@ -38,6 +38,9 @@ import android.opengl.GLES20;
 
 import com.comfycouch.examples.game.snake.adt.Direction;
 import com.comfycouch.examples.game.snake.adt.SnakeSuicideException;
+import com.comfycouch.examples.game.snake.entity.Frog;
+import com.comfycouch.examples.game.snake.entity.Snake;
+import com.comfycouch.examples.game.snake.entity.SnakeHead;
 import com.comfycouch.examples.game.snake.util.constants.SnakeConstants;
 
 public class SnakeGameActivity extends SimpleBaseGameActivity implements SnakeConstants {

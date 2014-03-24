@@ -38,7 +38,7 @@ public abstract class CellEntity extends Sprite implements SnakeConstants, ICell
 	
 	@Override
 	public boolean isInSameCell(final ICellEntity pCellEntity) {
-		return this.mCellX == pCellEntity.getCellX() && this.mCellY == pCellEntity.getY();
+		return this.mCellX == pCellEntity.getCellX() && this.mCellY == pCellEntity.getCellY();
 	}
 	
 }

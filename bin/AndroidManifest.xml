@@ -124,9 +124,9 @@
 		<activity android:name="com.comfycouch.examples.benchmark.SpriteBenchmark" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.benchmark.TickerTextBenchmark" android:configChanges="orientation"/>
 		
-		<activity android:name=".game.pong.PongGameActivity" android:configChanges="orientation"/>
-		<activity android:name=".game.snake.SnakeGameActivity" android:configChanges="orientation"/>
-		<activity android:name=".game.racer.RacerGameActivity" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.game.pong.PongGameActivity" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.game.snake.SnakeGameActivity" android:configChanges="orientation"/>
+		<activity android:name="com.comfycouch.examples.game.racer.RacerGameActivity" android:configChanges="orientation"/>
         
         <activity android:name="com.comfycouch.examples.app.cityradar.CityRadarActivity" android:configChanges="orientation"/>
         
