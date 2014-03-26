@@ -8,6 +8,7 @@ import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.sprite.Sprite;
@@ -21,7 +22,7 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 import android.opengl.GLES20;
 import android.view.KeyEvent;
 
-public class MenuExample extends SimpleBaseGameActivity {
+public class MenuExample extends SimpleBaseGameActivity implements IOnMenuItemClickListener {
 	
 	private static final int CAMERA_WIDTH = 720;
 	private static final int CAMERA_HEIGHT = 480;

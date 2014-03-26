@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import com.comfycouch.extension.multiplayer.protocol.adt.message.server.ServerMessage;
+import org.andengine.extension.multiplayer.adt.message.server.ServerMessage;
 
 
 public class ConnectionCloseServerMessage extends ServerMessage implements ServerMessageFlags {

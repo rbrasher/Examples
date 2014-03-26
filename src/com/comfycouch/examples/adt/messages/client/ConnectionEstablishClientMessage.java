@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.andengine.extension.multiplayer.adt.message.client.ClientMessage;
+
 public class ConnectionEstablishClientMessage extends ClientMessage implements ClientMessageFlags {
 
 	private short mProtocolVersion;

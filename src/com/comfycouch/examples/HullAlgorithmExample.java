@@ -20,7 +20,6 @@ import org.andengine.opengl.vbo.DrawType;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.Constants;
 import org.andengine.util.adt.color.Color;
-import org.andengine.util.algorithm.collision.ShapeCollisionChecker;
 import org.andengine.util.algorithm.hull.JarvisMarch;
 
 import android.widget.Toast;
@@ -29,10 +28,6 @@ public class HullAlgorithmExample extends SimpleBaseGameActivity implements OnCl
 	
 	private static final int CAMERA_WIDTH = 720;
 	private static final int CAMERA_HEIGHT = 480;
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
 
 	private float[] mMeshVertices = new float[] {
 			0, 100, Color.WHITE_ABGR_PACKED_FLOAT,
@@ -45,18 +40,6 @@ public class HullAlgorithmExample extends SimpleBaseGameActivity implements OnCl
 	private Mesh mHull;
 	private float[] mHullVertices;
 	private int mHullVertexCount;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
 
 	@Override
 	public EngineOptions onCreateEngineOptions() {
@@ -111,19 +94,19 @@ public class HullAlgorithmExample extends SimpleBaseGameActivity implements OnCl
 		} else if(pSceneTouchEvent.isActionMove()) {
 			{ /* Point-in-polygon test for the mesh. */
 				final float[] coords = this.mMesh.convertSceneCoordinatesToLocalCoordinates(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
-				if(ShapeCollisionChecker.checkContains(this.mMeshVertices, this.mMeshVertexCount, 0, 1, 3, coords[Constants.VERTEX_INDEX_X], coords[Constants.VERTEX_INDEX_Y])) {
-					this.mMesh.setColor(Color.GREEN);
-				} else {
+				//if(ShapeCollisionChecker.checkContains(this.mMeshVertices, this.mMeshVertexCount, 0, 1, 3, coords[Constants.VERTEX_INDEX_X], coords[Constants.VERTEX_INDEX_Y])) {
+					//this.mMesh.setColor(Color.GREEN);
+				//} else {
 					this.mMesh.setColor(Color.RED);
-				}
+				//}
 			}
 			{ /* Point-in-polygon test for the hull. */
 				final float[] coords = this.mHull.convertSceneCoordinatesToLocalCoordinates(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
-				if(ShapeCollisionChecker.checkContains(this.mHullVertices, this.mHullVertexCount, 0, 1, 3, coords[Constants.VERTEX_INDEX_X], coords[Constants.VERTEX_INDEX_Y])) {
-					this.mHull.setColor(Color.GREEN);
-				} else {
+				//if(ShapeCollisionChecker.checkContains(this.mHullVertices, this.mHullVertexCount, 0, 1, 3, coords[Constants.VERTEX_INDEX_X], coords[Constants.VERTEX_INDEX_Y])) {
+					//this.mHull.setColor(Color.GREEN);
+				//} else {
 					this.mHull.setColor(Color.RED);
-				}
+				//}
 			}
 		}
 

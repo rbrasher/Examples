@@ -38,6 +38,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.WifiUtils;
+import org.andengine.util.WifiUtils.WifiUtilsException;
 import org.andengine.util.debug.Debug;
 
 import android.app.AlertDialog;
@@ -135,19 +136,16 @@ public class MultiplayerExample extends SimpleBaseGameActivity implements Client
 		/* We allow only the server to actively send around messages. */
 		if(MultiplayerExample.this.mSocketServer != null) {
 			scene.setOnSceneTouchListener(new IOnSceneTouchListener() {
+				@SuppressWarnings("deprecation")
 				@Override
 				public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 					if(pSceneTouchEvent.isActionDown()) {
-						try {
-							final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
-							addFaceServerMessage.set(MultiplayerExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+						final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
+						addFaceServerMessage.set(MultiplayerExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-							MultiplayerExample.this.mSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
+						MultiplayerExample.this.mSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
 
-							MultiplayerExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
-						} catch (final IOException e) {
-							Debug.e(e);
-						}
+						MultiplayerExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
 						return true;
 					} else {
 						return true;
@@ -156,22 +154,18 @@ public class MultiplayerExample extends SimpleBaseGameActivity implements Client
 			});
 
 			scene.setOnAreaTouchListener(new IOnAreaTouchListener() {
+				@SuppressWarnings("deprecation")
 				@Override
 				public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final ITouchArea pTouchArea, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-					try {
-						final Sprite face = (Sprite)pTouchArea;
-						final Integer faceID = (Integer)face.getUserData();
+					final Sprite face = (Sprite)pTouchArea;
+					final Integer faceID = (Integer)face.getUserData();
 
-						final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
-						moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+					final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
+					moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-						MultiplayerExample.this.mSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
+					MultiplayerExample.this.mSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
 
-						MultiplayerExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
-					} catch (final IOException e) {
-						Debug.e(e);
-						return false;
-					}
+					MultiplayerExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
 					return true;
 				}
 			});
@@ -186,28 +180,18 @@ public class MultiplayerExample extends SimpleBaseGameActivity implements Client
 	protected Dialog onCreateDialog(final int pID) {
 		switch(pID) {
 			case DIALOG_SHOW_SERVER_IP_ID:
-				try {
-					return new AlertDialog.Builder(this)
-					.setIcon(android.R.drawable.ic_dialog_info)
-					.setTitle("Your Server-IP ...")
-					.setCancelable(false)
-					.setMessage("The IP of your Server is:\n" + WifiUtils.getWifiIPv4Address(this))
-					.setPositiveButton(android.R.string.ok, null)
-					.create();
-				} catch (final UnknownHostException e) {
-					return new AlertDialog.Builder(this)
-					.setIcon(android.R.drawable.ic_dialog_alert)
-					.setTitle("Your Server-IP ...")
-					.setCancelable(false)
-					.setMessage("Error retrieving IP of your Server: " + e)
-					.setPositiveButton(android.R.string.ok, new OnClickListener() {
-						@Override
-						public void onClick(final DialogInterface pDialog, final int pWhich) {
-							MultiplayerExample.this.finish();
-						}
-					})
-					.create();
-				}
+			try {
+				return new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_info)
+				.setTitle("Your Server-IP ...")
+				.setCancelable(false)
+				.setMessage("The IP of your Server is:\n" + WifiUtils.getWifiIPv4Address(this))
+				.setPositiveButton(android.R.string.ok, null)
+				.create();
+			} catch (WifiUtilsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			case DIALOG_ENTER_SERVER_IP_ID:
 				final EditText ipEditText = new EditText(this);
 				return new AlertDialog.Builder(this)
@@ -265,11 +249,7 @@ public class MultiplayerExample extends SimpleBaseGameActivity implements Client
 	@Override
 	protected void onDestroy() {
 		if(this.mSocketServer != null) {
-			try {
-				this.mSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
-			} catch (final IOException e) {
-				Debug.e(e);
-			}
+			this.mSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
 			this.mSocketServer.terminate();
 		}
 

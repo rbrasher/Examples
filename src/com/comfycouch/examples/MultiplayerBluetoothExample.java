@@ -130,6 +130,7 @@ public class MultiplayerBluetoothExample extends SimpleBaseGameActivity implemen
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Dialog onCreateDialog(final int pID) {
 		switch(pID) {
@@ -182,14 +183,11 @@ public class MultiplayerBluetoothExample extends SimpleBaseGameActivity implemen
 		return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onDestroy() {
 		if(this.mBluetoothSocketServer != null) {
-			try {
-				this.mBluetoothSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
-			} catch (final IOException e) {
-				Debug.e(e);
-			}
+			this.mBluetoothSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
 			this.mBluetoothSocketServer.terminate();
 		}
 
@@ -232,16 +230,12 @@ public class MultiplayerBluetoothExample extends SimpleBaseGameActivity implemen
 				@Override
 				public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 					if(pSceneTouchEvent.isActionDown()) {
-						try {
-							final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerBluetoothExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
-							addFaceServerMessage.set(MultiplayerBluetoothExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+						final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerBluetoothExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
+						addFaceServerMessage.set(MultiplayerBluetoothExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-							MultiplayerBluetoothExample.this.mBluetoothSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
+						MultiplayerBluetoothExample.this.mBluetoothSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
 
-							MultiplayerBluetoothExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
-						} catch (final IOException e) {
-							Debug.e(e);
-						}
+						MultiplayerBluetoothExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
 						return true;
 					} else {
 						return false;
@@ -252,20 +246,15 @@ public class MultiplayerBluetoothExample extends SimpleBaseGameActivity implemen
 			scene.setOnAreaTouchListener(new IOnAreaTouchListener() {
 				@Override
 				public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final ITouchArea pTouchArea, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-					try {
-						final Sprite face = (Sprite)pTouchArea;
-						final Integer faceID = (Integer)face.getUserData();
+					final Sprite face = (Sprite)pTouchArea;
+					final Integer faceID = (Integer)face.getUserData();
 
-						final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerBluetoothExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
-						moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+					final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerBluetoothExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
+					moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-						MultiplayerBluetoothExample.this.mBluetoothSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
+					MultiplayerBluetoothExample.this.mBluetoothSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
 
-						MultiplayerBluetoothExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
-					} catch (final IOException e) {
-						Debug.e(e);
-						return false;
-					}
+					MultiplayerBluetoothExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
 					return true;
 				}
 			});

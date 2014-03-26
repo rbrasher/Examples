@@ -26,6 +26,7 @@ import org.xml.sax.Attributes;
 
 import android.widget.Toast;
 
+/*
 public class LevelLoaderExample extends SimpleBaseGameActivity {
 
 	private static final int CAMERA_WIDTH = 480;
@@ -138,3 +139,4 @@ public class LevelLoaderExample extends SimpleBaseGameActivity {
 	}
 
 }
+*/

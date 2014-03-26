@@ -1,5 +1,7 @@
 package com.comfycouch.examples;
 
+import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -8,7 +10,6 @@ import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.shape.IAreaShape;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
@@ -164,6 +165,7 @@ public class PhysicsExample extends SimpleBaseGameActivity implements IAccelerat
 		} else if (this.mFaceCount % 4 == 2) {
 			face = new AnimatedSprite(pX, pY, this.mTriangleFaceTextureRegion, this.getVertexBufferObjectManager());
 			body = PhysicsExample.createTriangleBody(this.mPhysicsWorld, face, BodyType.DynamicBody, FIXTURE_DEF);
+			//body = PhysicsExample.createTriangleBody(pPhysicsWorld, pAreaShape, pBodyType, pFixtureDef)
 		} else {
 			face = new AnimatedSprite(pX, pY, this.mHexagonFaceTextureRegion, this.getVertexBufferObjectManager());
 			body = PhysicsExample.createHexagonBody(this.mPhysicsWorld, face, BodyType.DynamicBody, FIXTURE_DEF);
@@ -182,10 +184,11 @@ public class PhysicsExample extends SimpleBaseGameActivity implements IAccelerat
 	 * /__\
 	 * </pre>
 	 */
-	private static Body createTriangleBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+	@SuppressWarnings("deprecation")
+	private static Body createTriangleBody(final PhysicsWorld pPhysicsWorld, final AnimatedSprite face, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		/* Remember that the vertices are relative to the center-coordinates of the Shape. */
-		final float halfWidth = pAreaShape.getWidthScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
-		final float halfHeight = pAreaShape.getHeightScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfWidth = face.getWidthScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfHeight = face.getHeightScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
 
 		final float top = -halfHeight;
 		final float bottom = halfHeight;
@@ -199,7 +202,7 @@ public class PhysicsExample extends SimpleBaseGameActivity implements IAccelerat
 				new Vector2(left, bottom)
 		};
 
-		return PhysicsFactory.createPolygonBody(pPhysicsWorld, pAreaShape, vertices, pBodyType, pFixtureDef);
+		return PhysicsFactory.createPolygonBody(pPhysicsWorld, face, vertices, pBodyType, pFixtureDef);
 	}
 
 	/**
@@ -213,10 +216,11 @@ public class PhysicsExample extends SimpleBaseGameActivity implements IAccelerat
 	 *  \/
 	 * </pre>
 	 */
-	private static Body createHexagonBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+	@SuppressWarnings("deprecation")
+	private static Body createHexagonBody(final PhysicsWorld pPhysicsWorld, final AnimatedSprite face, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		/* Remember that the vertices are relative to the center-coordinates of the Shape. */
-		final float halfWidth = pAreaShape.getWidthScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
-		final float halfHeight = pAreaShape.getHeightScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfWidth = face.getWidthScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
+		final float halfHeight = face.getHeightScaled() * 0.5f / PIXEL_TO_METER_RATIO_DEFAULT;
 
 		/* The top and bottom vertex of the hexagon are on the bottom and top of hexagon-sprite. */
 		final float top = -halfHeight;
@@ -239,6 +243,6 @@ public class PhysicsExample extends SimpleBaseGameActivity implements IAccelerat
 				new Vector2(left, higher)
 		};
 
-		return PhysicsFactory.createPolygonBody(pPhysicsWorld, pAreaShape, vertices, pBodyType, pFixtureDef);
+		return PhysicsFactory.createPolygonBody(pPhysicsWorld, face, vertices, pBodyType, pFixtureDef);
 	}
 }

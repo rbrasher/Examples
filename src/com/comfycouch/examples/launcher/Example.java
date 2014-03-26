@@ -2,8 +2,90 @@ package com.comfycouch.examples.launcher;
 
 import org.andengine.ui.activity.BaseGameActivity;
 
+import com.comfycouch.examples.AnalogOnScreenControlExample;
+import com.comfycouch.examples.AnalogOnScreenControlsExample;
+import com.comfycouch.examples.AnimatedSpritesExample;
+import com.comfycouch.examples.AutoParallaxBackgroundExample;
+import com.comfycouch.examples.BitmapFontExample;
+import com.comfycouch.examples.BoundCameraExample;
+import com.comfycouch.examples.CanvasTextureCompositingExample;
+import com.comfycouch.examples.CardinalSplineMoveModifierExample;
+import com.comfycouch.examples.CollisionDetectionExample;
+import com.comfycouch.examples.ColorKeyTextureSourceDecoratorExample;
+import com.comfycouch.examples.CoordinateConversionExample;
+import com.comfycouch.examples.CustomFontExample;
+import com.comfycouch.examples.DigitalOnScreenControlExample;
+import com.comfycouch.examples.ETC1TextureExample;
+import com.comfycouch.examples.EaseFunctionExample;
+import com.comfycouch.examples.EntityModifierExample;
+import com.comfycouch.examples.EntityModifierIrregularExample;
+import com.comfycouch.examples.HullAlgorithmExample;
+import com.comfycouch.examples.ImageFormatsExample;
+//import com.comfycouch.examples.LevelLoaderExample;
+import com.comfycouch.examples.LineExample;
+import com.comfycouch.examples.LoadTextureExample;
+import com.comfycouch.examples.MenuExample;
+import com.comfycouch.examples.ModPlayerExample;
+import com.comfycouch.examples.MotionStreakExample;
+import com.comfycouch.examples.MovingBallExample;
+import com.comfycouch.examples.MultiTouchExample;
+import com.comfycouch.examples.MultiplayerBluetoothExample;
+import com.comfycouch.examples.MultiplayerExample;
+import com.comfycouch.examples.MultiplayerServerDiscoveryExample;
+import com.comfycouch.examples.MusicExample;
+import com.comfycouch.examples.PVRCCZTextureExample;
+import com.comfycouch.examples.PVRGZTextureExample;
+import com.comfycouch.examples.PVRTextureExample;
+import com.comfycouch.examples.ParticleSystemCoolExample;
+import com.comfycouch.examples.ParticleSystemNexusExample;
+import com.comfycouch.examples.ParticleSystemSimpleExample;
+import com.comfycouch.examples.PathModifierExample;
+import com.comfycouch.examples.PauseExample;
+import com.comfycouch.examples.PhysicsCollisionFilteringExample;
+import com.comfycouch.examples.PhysicsExample;
+import com.comfycouch.examples.PhysicsFixedStepExample;
+import com.comfycouch.examples.PhysicsJumpExample;
+import com.comfycouch.examples.PhysicsMouseJointExample;
+import com.comfycouch.examples.PhysicsRemoveExample;
+import com.comfycouch.examples.PhysicsRevoluteJointExample;
+import com.comfycouch.examples.PinchZoomExample;
 import com.comfycouch.examples.R;
+import com.comfycouch.examples.RadialBlurExample;
+import com.comfycouch.examples.RectangleExample;
+import com.comfycouch.examples.RepeatingSpriteBackgroundExample;
+import com.comfycouch.examples.Rotation3DExample;
+import com.comfycouch.examples.RunnablePoolUpdateHandlerExample;
+//import com.comfycouch.examples.SVGTextureRegionExample;
+import com.comfycouch.examples.ScreenCaptureExample;
+import com.comfycouch.examples.SoundExample;
+import com.comfycouch.examples.SplitScreenExample;
+import com.comfycouch.examples.SpriteBatchExample;
+import com.comfycouch.examples.SpriteExample;
+import com.comfycouch.examples.SpriteRemoveExample;
+import com.comfycouch.examples.StrokeFontExample;
+import com.comfycouch.examples.SubMenuExample;
+import com.comfycouch.examples.TMXTiledMapExample;
+import com.comfycouch.examples.TextBreakExample;
 import com.comfycouch.examples.TextExample;
+import com.comfycouch.examples.TextMenuExample;
+import com.comfycouch.examples.TextureOptionsExample;
+import com.comfycouch.examples.TexturePackerExample;
+import com.comfycouch.examples.TickerTextExample;
+import com.comfycouch.examples.TouchDragExample;
+import com.comfycouch.examples.UnloadResourcesExample;
+import com.comfycouch.examples.UpdateTextureExample;
+import com.comfycouch.examples.XMLLayoutExample;
+import com.comfycouch.examples.ZoomExample;
+import com.comfycouch.examples.app.cityradar.CityRadarActivity;
+import com.comfycouch.examples.benchmark.AnimationBenchmark;
+import com.comfycouch.examples.benchmark.AttachDetachBenchmark;
+import com.comfycouch.examples.benchmark.EntityModifierBenchmark;
+import com.comfycouch.examples.benchmark.PhysicsBenchmark;
+import com.comfycouch.examples.benchmark.SpriteBenchmark;
+import com.comfycouch.examples.benchmark.TickerTextBenchmark;
+import com.comfycouch.examples.game.pong.PongGameActivity;
+import com.comfycouch.examples.game.racer.RacerGameActivity;
+import com.comfycouch.examples.game.snake.SnakeGameActivity;
 
 public enum Example {
 	// ===========================================================
@@ -32,7 +114,7 @@ public enum Example {
 	ETC1TEXTURE(ETC1TextureExample.class, R.string.example_etc1texture),
 	HULLALGORITHM(HullAlgorithmExample.class, R.string.example_hullalgorithm),
 	IMAGEFORMATS(ImageFormatsExample.class, R.string.example_imageformats),
-	LEVELLOADER(LevelLoaderExample.class, R.string.example_levelloader),
+	//LEVELLOADER(LevelLoaderExample.class, R.string.example_levelloader),
 	LINE(LineExample.class, R.string.example_line),
 	LOADTEXTURE(LoadTextureExample.class, R.string.example_loadtexture),
 	MENU(MenuExample.class, R.string.example_menu),
@@ -73,7 +155,7 @@ public enum Example {
 	SPRITEREMOVE(SpriteRemoveExample.class, R.string.example_spriteremove),
 	STROKEFONT(StrokeFontExample.class, R.string.example_strokefont),
 	SUBMENU(SubMenuExample.class, R.string.example_submenu),
-	SVGTEXTUREREGION(SVGTextureRegionExample.class, R.string.example_svgtextureregion),
+	//SVGTEXTUREREGION(SVGTextureRegionExample.class, R.string.example_svgtextureregion),
 	TEXT(TextExample.class, R.string.example_text),
 	TEXTBREAK(TextBreakExample.class, R.string.example_textbreak),
 	TEXTMENU(TextMenuExample.class, R.string.example_textmenu),

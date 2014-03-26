@@ -2,6 +2,7 @@ package com.comfycouch.examples.game.pong;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.LimitedFPSEngine;
@@ -16,6 +17,13 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.util.FPSLogger;
+import org.andengine.extension.multiplayer.adt.message.server.IServerMessage;
+import org.andengine.extension.multiplayer.client.IServerMessageHandler;
+import org.andengine.extension.multiplayer.client.connector.ServerConnector;
+import org.andengine.extension.multiplayer.client.connector.SocketConnectionServerConnector.ISocketConnectionServerConnectorListener;
+import org.andengine.extension.multiplayer.server.connector.ClientConnector;
+import org.andengine.extension.multiplayer.server.connector.SocketConnectionClientConnector.ISocketConnectionClientConnectorListener;
+import org.andengine.extension.multiplayer.shared.SocketConnection;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
@@ -24,15 +32,20 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+import org.andengine.util.WifiUtils;
+import org.andengine.util.WifiUtils.WifiUtilsException;
 import org.andengine.util.debug.Debug;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.comfycouch.examples.adt.messages.MessageConstants;
@@ -70,7 +83,7 @@ public class PongGameActivity extends SimpleBaseGameActivity implements PongCons
 	// ==========================================
 	// FIELDS
 	// ==========================================
-	private Camera mCamera
+	private Camera mCamera;
 	
 	private String mServerIP = LOCALHOST_IP;
 	
@@ -159,14 +172,11 @@ public class PongGameActivity extends SimpleBaseGameActivity implements PongCons
 		
 		scene.registerUpdateHandler(new IUpdateHandler() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onUpdate(final float pSecondsElapsed) {
 				if(PongGameActivity.this.mPaddleID != PADDLEID_NOT_SET) {
-					try {
-						PongGameActivity.this.mServerConnector.sendClientMessage(new MovePaddleClientMessage(PongGameActivity.this.mPaddleID, PongGameActivity.this.mPaddleCenterY));
-					} catch (final IOException e) {
-						Debug.e(e);
-					}
+					PongGameActivity.this.mServerConnector.sendClientMessage(new MovePaddleClientMessage(PongGameActivity.this.mPaddleID, PongGameActivity.this.mPaddleCenterY));
 				}
 			}
 
@@ -191,51 +201,35 @@ public class PongGameActivity extends SimpleBaseGameActivity implements PongCons
 	}
 	
 	@SuppressWarnings("deprecation")
-	@Override
 	public boolean onMenuItemsSelected(final int pFeatureId, final MenuItem pItem) {
 		switch(pItem.getItemId()) {
 			case MENU_PING:
-				try {
-					final ConnectionPingClientMessage connectionPingClientMessage = new ConnectionPingClientMessage();	//TODO: Pooling
-					connectionPingClientMessage.setTimestamp(System.currentTimeMillis());
-					this.mServerConnector.sendClientMessage(connectionPingClientMessage);
-				} catch (final IOException e) {
-					Debug.e(e);
-				}
+			final ConnectionPingClientMessage connectionPingClientMessage = new ConnectionPingClientMessage();	//TODO: Pooling
+			connectionPingClientMessage.setTimestamp(System.currentTimeMillis());
+			this.mServerConnector.sendClientMessage(connectionPingClientMessage);
 				return true;
 			default:
 				return super.onMenuItemSelected(pFeatureId, pItem);
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Dialog onCreateDialog(final int pID) {
 		switch(pID) {
 			case DIALOG_SHOW_SERVER_IP_ID:
-				try {
-					return new AlertDialog.Builder(this)
-						.setIcon(android.R.drawable.ic_dialog_info)
-						.setTitle("Your Server-IP ...")
-						.setCancelable(false)
-						.setMessage("The IP of your Server is:\n" + WifiUtils.getWifiIPv4Address(this))
-						.setPositiveButton(android.R.string.ok, null)
-						.create();
-				} catch (final UnknownHostException e) {
-					return new AlertDialog.Builder(this)
-						.setIcon(android.R.drawable.ic_dialog_alert)
-						.setTitle("Your Server-IP...")
-						.setCancelable(false)
-						.setMessage("Error retrieving IP of your server: " + e)
-						.setPositiveButton(android.R.string.ok, new OnClickListener() {
-	
-							@Override
-							public void onClick(final DialogInterface pDialog, final int pWhich) {
-								PongGameActivity.this.finish();
-							}
-							
-						})
-						.create();
-				}
+			try {
+				return new AlertDialog.Builder(this)
+					.setIcon(android.R.drawable.ic_dialog_info)
+					.setTitle("Your Server-IP ...")
+					.setCancelable(false)
+					.setMessage("The IP of your Server is:\n" + WifiUtils.getWifiIPv4Address(this))
+					.setPositiveButton(android.R.string.ok, null)
+					.create();
+			} catch (WifiUtilsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			case DIALOG_ENTER_SERVER_IP_ID:
 				final EditText ipEditText = new EditText(this);
 				return new AlertDialog.Builder(this)
@@ -287,14 +281,11 @@ public class PongGameActivity extends SimpleBaseGameActivity implements PongCons
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onDestroy() {
 		if(this.mServer != null) {
-			try {
-				this.mServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
-			} catch (final IOException e) {
-				Debug.e(e);
-			}
+			this.mServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
 			this.mServer.terminate();
 		}
 		

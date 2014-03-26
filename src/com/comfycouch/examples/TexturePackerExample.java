@@ -6,24 +6,24 @@ import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.sprite.Sprite;
+//import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.util.FPSLogger;
-import org.andengine.opengl.texture.region.TextureRegion;
+//import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
-import org.andengine.util.debug.Debug;
-import org.andengine.util.texturepack.TexturePack;
-import org.andengine.util.texturepack.TexturePackLoader;
-import org.andengine.util.texturepack.TexturePackTextureRegionLibrary;
-import org.andengine.util.texturepack.exception.TexturePackParseException;
+//import org.andengine.util.debug.Debug;
+//import org.andengine.util.texturepack.TexturePack;
+//import org.andengine.util.texturepack.TexturePackLoader;
+//import org.andengine.util.texturepack.TexturePackTextureRegionLibrary;
+//import org.andengine.util.texturepack.exception.TexturePackParseException;
 
-import com.comfycouch.examples.spritesheets.TexturePackerExampleSpritesheet;
+//import com.comfycouch.examples.spritesheets.TexturePackerExampleSpritesheet;
 
 public class TexturePackerExample extends SimpleBaseGameActivity {
 
 	private static final int CAMERA_WIDTH = 720;
 	private static final int CAMERA_HEIGHT = 480;
 
-	private TexturePackTextureRegionLibrary mSpritesheetTexturePackTextureRegionLibrary;
+	//private TexturePackTextureRegionLibrary mSpritesheetTexturePackTextureRegionLibrary;
 
 	@Override
 	public EngineOptions onCreateEngineOptions() {
@@ -34,13 +34,13 @@ public class TexturePackerExample extends SimpleBaseGameActivity {
 
 	@Override
 	public void onCreateResources() {
-		try {
-			final TexturePack spritesheetTexturePack = new TexturePackLoader(this.getTextureManager(), "gfx/spritesheets/").loadFromAsset(this.getAssets(), "texturepackerexample.xml");
-			spritesheetTexturePack.loadTexture();
-			this.mSpritesheetTexturePackTextureRegionLibrary = spritesheetTexturePack.getTexturePackTextureRegionLibrary();
-		} catch (final TexturePackParseException e) {
-			Debug.e(e);
-		}
+		//try {
+			//final TexturePack spritesheetTexturePack = new TexturePackLoader(this.getTextureManager(), "gfx/spritesheets/").loadFromAsset(this.getAssets(), "texturepackerexample.xml");
+			//spritesheetTexturePack.loadTexture();
+			//this.mSpritesheetTexturePackTextureRegionLibrary = spritesheetTexturePack.getTexturePackTextureRegionLibrary();
+		//} catch (final TexturePackParseException e) {
+			//Debug.e(e);
+		//}
 	}
 
 	@Override
@@ -50,15 +50,15 @@ public class TexturePackerExample extends SimpleBaseGameActivity {
 		final Scene scene = new Scene();
 		scene.setBackground(new Background(1, 1, 1));
 
-		TextureRegion faceTextureRegion = this.mSpritesheetTexturePackTextureRegionLibrary.get(TexturePackerExampleSpritesheet.FACE_BOX_ID);
+		//TextureRegion faceTextureRegion = this.mSpritesheetTexturePackTextureRegionLibrary.get(TexturePackerExampleSpritesheet.FACE_BOX_ID);
 		/* Calculate the coordinates for the face, so its centered on the camera. */
-		final float centerX = (CAMERA_WIDTH - faceTextureRegion.getWidth()) / 2;
-		final float centerY = (CAMERA_HEIGHT - faceTextureRegion.getHeight()) / 2;
+		//final float centerX = (CAMERA_WIDTH - faceTextureRegion.getWidth()) / 2;
+		//final float centerY = (CAMERA_HEIGHT - faceTextureRegion.getHeight()) / 2;
 
 		/* Create the face and add it to the scene. */
-		Sprite entity = new Sprite(centerX, centerY, faceTextureRegion, this.getVertexBufferObjectManager());
-		entity.setScale(20);
-		scene.attachChild(entity);
+		//Sprite entity = new Sprite(centerX, centerY, faceTextureRegion, this.getVertexBufferObjectManager());
+		//entity.setScale(20);
+		//scene.attachChild(entity);
 
 		return scene;
 	}

@@ -61,7 +61,7 @@
 		<activity android:name="com.comfycouch.examples.ETC1TextureExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.HullAlgorithmExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.ImageFormatsExample" android:configChanges="orientation"/>
-		<activity android:name="com.comfycouch.examples.LevelLoaderExample" android:configChanges="orientation"/>
+		<!-- <activity android:name="com.comfycouch.examples.LevelLoaderExample" android:configChanges="orientation"/> -->
 		<activity android:name="com.comfycouch.examples.LineExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.LoadTextureExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.MenuExample" android:configChanges="orientation"/>
@@ -102,7 +102,7 @@
 		<activity android:name="com.comfycouch.examples.SpriteRemoveExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.StrokeFontExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.SubMenuExample" android:configChanges="orientation"/>
-		<activity android:name="com.comfycouch.examples.SVGTextureRegionExample" android:configChanges="orientation"/>
+		<!-- <activity android:name="com.comfycouch.examples.SVGTextureRegionExample" android:configChanges="orientation"/> -->
 		<activity android:name="com.comfycouch.examples.TextExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.TextBreakExample" android:configChanges="orientation"/>
 		<activity android:name="com.comfycouch.examples.TextMenuExample" android:configChanges="orientation"/>

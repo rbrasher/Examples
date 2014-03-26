@@ -23,6 +23,7 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
+/*
 public class SVGTextureRegionExample extends SimpleBaseGameActivity {
 
 	private static final int CAMERA_WIDTH = 720;
@@ -63,7 +64,7 @@ public class SVGTextureRegionExample extends SimpleBaseGameActivity {
 				if(pColor == null) {
 					return null;
 				} else {
-					/* Swap blue and green channel. */
+
 					return Color.argb(0, Color.red(pColor), Color.blue(pColor), Color.green(pColor));
 				}
 			}
@@ -74,7 +75,7 @@ public class SVGTextureRegionExample extends SimpleBaseGameActivity {
 				if(pColor == null) {
 					return null;
 				} else {
-					/* Swap red and green channel. */
+
 					return Color.argb(0, Color.green(pColor), Color.red(pColor), Color.blue(pColor));
 				}
 			}
@@ -126,3 +127,4 @@ public class SVGTextureRegionExample extends SimpleBaseGameActivity {
 		return scene;
 	}
 }
+*/

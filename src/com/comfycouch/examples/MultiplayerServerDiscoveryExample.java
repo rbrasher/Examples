@@ -144,16 +144,12 @@ public class MultiplayerServerDiscoveryExample extends SimpleBaseGameActivity im
 				@Override
 				public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 					if(pSceneTouchEvent.isActionDown()) {
-						try {
-							final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerServerDiscoveryExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
-							addFaceServerMessage.set(MultiplayerServerDiscoveryExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+						final AddFaceServerMessage addFaceServerMessage = (AddFaceServerMessage) MultiplayerServerDiscoveryExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_ADD_FACE);
+						addFaceServerMessage.set(MultiplayerServerDiscoveryExample.this.mFaceIDCounter++, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-							MultiplayerServerDiscoveryExample.this.mSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
+						MultiplayerServerDiscoveryExample.this.mSocketServer.sendBroadcastServerMessage(addFaceServerMessage);
 
-							MultiplayerServerDiscoveryExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
-						} catch (final IOException e) {
-							Debug.e(e);
-						}
+						MultiplayerServerDiscoveryExample.this.mMessagePool.recycleMessage(addFaceServerMessage);
 						return true;
 					} else {
 						return false;
@@ -164,20 +160,15 @@ public class MultiplayerServerDiscoveryExample extends SimpleBaseGameActivity im
 			scene.setOnAreaTouchListener(new IOnAreaTouchListener() {
 				@Override
 				public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final ITouchArea pTouchArea, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-					try {
-						final Sprite face = (Sprite)pTouchArea;
-						final Integer faceID = (Integer)face.getUserData();
+					final Sprite face = (Sprite)pTouchArea;
+					final Integer faceID = (Integer)face.getUserData();
 
-						final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerServerDiscoveryExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
-						moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+					final MoveFaceServerMessage moveFaceServerMessage = (MoveFaceServerMessage) MultiplayerServerDiscoveryExample.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_MOVE_FACE);
+					moveFaceServerMessage.set(faceID, pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 
-						MultiplayerServerDiscoveryExample.this.mSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
+					MultiplayerServerDiscoveryExample.this.mSocketServer.sendBroadcastServerMessage(moveFaceServerMessage);
 
-						MultiplayerServerDiscoveryExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
-					} catch (final IOException e) {
-						Debug.e(e);
-						return false;
-					}
+					MultiplayerServerDiscoveryExample.this.mMessagePool.recycleMessage(moveFaceServerMessage);
 					return true;
 				}
 			});
@@ -188,6 +179,7 @@ public class MultiplayerServerDiscoveryExample extends SimpleBaseGameActivity im
 		return scene;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Dialog onCreateDialog(final int pID) {
 		switch(pID) {
@@ -223,14 +215,11 @@ public class MultiplayerServerDiscoveryExample extends SimpleBaseGameActivity im
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onDestroy() {
 		if(this.mSocketServer != null) {
-			try {
-				this.mSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
-			} catch (final IOException e) {
-				Debug.e(e);
-			}
+			this.mSocketServer.sendBroadcastServerMessage(new ConnectionCloseServerMessage());
 			this.mSocketServer.terminate();
 		}
 

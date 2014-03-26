@@ -161,8 +161,8 @@ public class TMXTiledMapExample extends SimpleBaseGameActivity {
 				/* Get the tile the feet of the player are currently waking on. */
 				final TMXTile tmxTile = tmxLayer.getTMXTileAt(playerFootCordinates[Constants.VERTEX_INDEX_X], playerFootCordinates[Constants.VERTEX_INDEX_Y]);
 				if(tmxTile != null) {
-					// tmxTile.setTextureRegion(null); <-- Rubber-style removing of tiles =D
-					currentTileRectangle.setPosition(tmxTile.getTileX(), tmxTile.getTileY());
+					tmxTile.setTextureRegion(null); //<-- Rubber-style removing of tiles =D
+					//currentTileRectangle.setPosition(tmxTile.getTileX(), tmxTile.getTileY());
 				}
 			}
 		});

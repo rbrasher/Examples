@@ -149,6 +149,7 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void beginContact(final Contact pContact) {
 		final Fixture fixtureA = pContact.getFixtureA();
@@ -176,12 +177,8 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 
 			final SmartList<SocketConnectionClientConnector> clientConnectors = this.mClientConnectors;
 			for(int i = 0; i < clientConnectors.size(); i++) {
-				try {
-					final ClientConnector<SocketConnection> clientConnector = clientConnectors.get(i);
-					clientConnector.sendServerMessage(updateScoreServerMessage);
-				} catch (final IOException e) {
-					Debug.e(e);
-				}
+				final ClientConnector<SocketConnection> clientConnector = clientConnectors.get(i);
+				clientConnector.sendServerMessage(updateScoreServerMessage);
 			}
 			this.mMessagePool.recycleMessage(updateScoreServerMessage);
 		}
@@ -192,6 +189,7 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		if(this.mResetBall) {
@@ -231,18 +229,14 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 			updatePaddleServerMessages.add(updatePaddleServerMessage);
 		}
 
-		try {
-			/* Update Ball. */
-			this.sendBroadcastServerMessage(updateBallServerMessage);
+		/* Update Ball. */
+		this.sendBroadcastServerMessage(updateBallServerMessage);
 
-			/* Update Paddles. */
-			for(int j = 0; j < updatePaddleServerMessages.size(); j++) {
-				this.sendBroadcastServerMessage(updatePaddleServerMessages.get(j));
-			}
-			this.sendBroadcastServerMessage(updateBallServerMessage);
-		} catch (final IOException e) {
-			Debug.e(e);
+		/* Update Paddles. */
+		for(int j = 0; j < updatePaddleServerMessages.size(); j++) {
+			this.sendBroadcastServerMessage(updatePaddleServerMessages.get(j));
 		}
+		this.sendBroadcastServerMessage(updateBallServerMessage);
 
 		/* Recycle messages. */
 		this.mMessagePool.recycleMessage(updateBallServerMessage);
@@ -255,6 +249,7 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 		/* Nothing. */
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected SocketConnectionClientConnector newClientConnector(final SocketConnection pSocketConnection) throws IOException {
 		final SocketConnectionClientConnector clientConnector = new SocketConnectionClientConnector(pSocketConnection);
@@ -279,39 +274,29 @@ public class PongServer extends SocketServer<SocketConnectionClientConnector> im
 		});
 
 		clientConnector.registerClientMessage(FLAG_MESSAGE_CLIENT_CONNECTION_ESTABLISH, ConnectionEstablishClientMessage.class, new IClientMessageHandler<SocketConnection>() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onHandleMessage(final ClientConnector<SocketConnection> pClientConnector, final IClientMessage pClientMessage) throws IOException {
 				final ConnectionEstablishClientMessage connectionEstablishClientMessage = (ConnectionEstablishClientMessage) pClientMessage;
 				if(connectionEstablishClientMessage.getProtocolVersion() == MessageConstants.PROTOCOL_VERSION) {
 					final ConnectionEstablishedServerMessage connectionEstablishedServerMessage = (ConnectionEstablishedServerMessage) PongServer.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_CONNECTION_ESTABLISHED);
-					try {
-						pClientConnector.sendServerMessage(connectionEstablishedServerMessage);
-					} catch (IOException e) {
-						Debug.e(e);
-					}
+					pClientConnector.sendServerMessage(connectionEstablishedServerMessage);
 					PongServer.this.mMessagePool.recycleMessage(connectionEstablishedServerMessage);
 				} else {
 					final ConnectionRejectedProtocolMissmatchServerMessage connectionRejectedProtocolMissmatchServerMessage = (ConnectionRejectedProtocolMissmatchServerMessage) PongServer.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_CONNECTION_REJECTED_PROTOCOL_MISSMATCH);
 					connectionRejectedProtocolMissmatchServerMessage.setProtocolVersion(MessageConstants.PROTOCOL_VERSION);
-					try {
-						pClientConnector.sendServerMessage(connectionRejectedProtocolMissmatchServerMessage);
-					} catch (IOException e) {
-						Debug.e(e);
-					}
+					pClientConnector.sendServerMessage(connectionRejectedProtocolMissmatchServerMessage);
 					PongServer.this.mMessagePool.recycleMessage(connectionRejectedProtocolMissmatchServerMessage);
 				}
 			}
 		});
 
 		clientConnector.registerClientMessage(FLAG_MESSAGE_CLIENT_CONNECTION_PING, ConnectionPingClientMessage.class, new IClientMessageHandler<SocketConnection>() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onHandleMessage(final ClientConnector<SocketConnection> pClientConnector, final IClientMessage pClientMessage) throws IOException {
 				final ConnectionPongServerMessage connectionPongServerMessage = (ConnectionPongServerMessage) PongServer.this.mMessagePool.obtainMessage(FLAG_MESSAGE_SERVER_CONNECTION_PONG);
-				try {
-					pClientConnector.sendServerMessage(connectionPongServerMessage);
-				} catch (IOException e) {
-					Debug.e(e);
-				}
+				pClientConnector.sendServerMessage(connectionPongServerMessage);
 				PongServer.this.mMessagePool.recycleMessage(connectionPongServerMessage);
 			}
 		});

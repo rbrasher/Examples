@@ -47,6 +47,14 @@ public class Snake extends Entity {
 		}
 	}
 	
+	public int getTailLength() {
+		return this.mTail.size();
+	}
+
+	public SnakeHead getHead() {
+		return this.mHead;
+	}
+	
 	// ==========================================
 	// METHODS
 	// ==========================================

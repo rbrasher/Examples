@@ -4,8 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.andengine.extension.multiplayer.adt.message.client.ClientMessage;
+
 import com.comfycouch.examples.game.pong.util.constants.PongConstants;
-import com.comfycouch.extension.multiplayer.protocol.adt.message.client.ClientMessage;
 
 
 public class MovePaddleClientMessage extends ClientMessage implements PongConstants {

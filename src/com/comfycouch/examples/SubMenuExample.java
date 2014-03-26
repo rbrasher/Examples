@@ -1,6 +1,7 @@
 package com.comfycouch.examples;
 
 import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.scene.menu.animator.SlideMenuSceneAnimator;
 import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.opengl.texture.TextureOptions;
@@ -37,7 +38,7 @@ public class SubMenuExample extends MenuExample {
 		this.mSubMenuScene = new MenuScene(this.mCamera);
 		this.mSubMenuScene.addMenuItem(new SpriteMenuItem(MENU_QUIT_OK, this.mMenuOkTextureRegion, this.getVertexBufferObjectManager()));
 		this.mSubMenuScene.addMenuItem(new SpriteMenuItem(MENU_QUIT_BACK, this.mMenuBackTextureRegion, this.getVertexBufferObjectManager()));
-		this.mSubMenuScene.setMenuAnimator(new SlideMenuAnimator());
+		this.mSubMenuScene.setMenuSceneAnimator(new SlideMenuSceneAnimator());
 		this.mSubMenuScene.buildAnimations();
 
 		this.mSubMenuScene.setBackgroundEnabled(false);

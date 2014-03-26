@@ -30,10 +30,10 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.align.HorizontalAlign;
-import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.math.MathUtils;
 
+import android.graphics.Color;
 import android.opengl.GLES20;
 
 import com.comfycouch.examples.game.snake.adt.Direction;
@@ -109,7 +109,7 @@ public class SnakeGameActivity extends SimpleBaseGameActivity implements SnakeCo
 	protected void onCreateResources() {
 		/* Load the font we are going to use */
 		FontFactory.setAssetBasePath("font/");
-		this.mFont = FontFactory.createFromAsset(this.getFontManager(), this.getTextureManager(), 512, 512, TextureOptions.BILINEAR, this.getAssets(), "Plok.ttf", 32, true, Color.WHITE);
+		this.mFont = FontFactory.createFromAsset(this.getFontManager(), this.getTextureManager(), 512, 512, TextureOptions.BILINEAR, this.getAssets(), "Plok.ttf", 32.0f, true, Color.WHITE);
 		this.mFont.load();
 		
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");

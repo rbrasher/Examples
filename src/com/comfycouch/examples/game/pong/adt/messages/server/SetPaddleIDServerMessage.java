@@ -4,8 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.andengine.extension.multiplayer.adt.message.server.ServerMessage;
+
 import com.comfycouch.examples.game.pong.util.constants.PongConstants;
-import com.comfycouch.extension.multiplayer.protocol.adt.message.server.ServerMessage;
 
 
 public class SetPaddleIDServerMessage extends ServerMessage implements PongConstants {
